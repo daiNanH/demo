@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>camera.js</title>
+  <script src="./camera.js"></script>
+</head>
+<body>
+<video id="myCamera" autoplay></video>
+<img src="" alt="" id="img">
+<button id="btn">拍摄</button>
+<script>
+  var myCamera = new Camera('myCamera');
+  myCamera.init(function () {
+    console.log('success');
+  }, function (err) {
+    console.log('error');
+  });
+  var btn = document.getElementById('btn');
+  btn.addEventListener('click', function () {
+    myCamera.shoot({}, function (imageSrc) {
+      document.getElementById('img').src = imageSrc;
+      console.log(myCamera.imageSrcList)
+    });
+  }, false);
+  //  setTimeout(function () {
+  //    myCamera.destroy();
+  //  },9000);
+</script>
+</body>
+</html>
